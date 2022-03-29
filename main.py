@@ -27,6 +27,24 @@ async def send_joke(ctx, category):
         await ctx.channel.send(jke["delivery"])
 
 
+# this is the list of naughty words
+badWords = ['matt', 'dobby', 'balls', 'big']
+replace_characters = ['$', '!', '#', '!', '&', '*', '%']
+
+
+# Detects if a user uses one of the words in the naughty word list
+@bot.event
+async def on_message(message):
+    for i in badWords:
+        if i in message.content.lower():
+            await message.delete()
+            await message.channel.send(
+                f'{message.author.mention} Don\'t say {i.replace(i[1:len(i)], random.choice(replace_characters) * len(i))}'
+            )
+            return
+    await bot.process_commands(message)
+
+
 # Login Event
 @bot.event
 async def on_ready():
