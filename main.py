@@ -120,4 +120,3 @@ class TTT():
 
 # This is the identifier command that runs the bot. The text is the token of the bot
 bot.run(os.getenv('TOKEN'))
-#Test
