@@ -1,6 +1,5 @@
 import asyncio
 import random
-import pyjokes
 import os
 
 from dotenv import load_dotenv
@@ -70,17 +69,6 @@ async def roll(ctx, number_of_dice: int, number_of_sides: int):
         if _ < number_of_dice - 1:
             dice += ', '
     await ctx.send(dice)
-
-
-@bot.command(
-    name='joke//OLD//',
-    brief='given (language, category) returns a random joke',
-    help='Languages include: en, de, es, it, gl, eu\nCategories include: neutral (regular joke), twister (tongue '
-         'twister), all '
-)
-async def joke(ctx, lang: str, category: str):
-    myJoke = pyjokes.get_joke(lang, category)
-    await ctx.channel.send(myJoke)
 
 
 # Joke command that pulls from an online api
